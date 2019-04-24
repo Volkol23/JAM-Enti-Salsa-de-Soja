@@ -15,14 +15,18 @@ public class PlayerBehaviour : MonoBehaviour {
     public Rigidbody2D rb;
     public float velocity;
     public Collider2D citizen;
+
     private int score;
     private int citizenScared;
+    private bool isScaring;
+    private float timeS
 
 
     void Start () {
         playerState = State.moving;
         rb = GetComponent<Rigidbody2D>();
         citizen = GetComponent<Collider2D>();
+        isScaring = false;
     }
 
     RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
@@ -58,7 +62,10 @@ public class PlayerBehaviour : MonoBehaviour {
         //{
         //    velocity += 3;
         //}
-        rb.velocity = movement * velocity;
+        if (!isScaring)
+            rb.velocity = movement * velocity;
+        else
+            rb.velocity = new Vector2(0.0f, 0.0f);
 
         if (hit.collider != null)
         {
@@ -78,6 +85,6 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private void Scare()
     {
-
+        
     }
 }
