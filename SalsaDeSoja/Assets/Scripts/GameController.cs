@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+    // Enums
     public enum Direction {
         vertical_up,
         vertical_down,
@@ -11,10 +12,12 @@ public class GameController : MonoBehaviour {
         horizontal_right
     }
 
+    // Public variables
     public int maxCitizens;
     public float timeToSpawnCitizen;
     public GameObject citizen;
 
+    // Outlets
     //Generators <!> Hay que mejorar esta parte, mejor hacerlo con un array/lista.
     public GameObject left_up_generator;
     public GameObject left_down_generator;
@@ -28,6 +31,7 @@ public class GameController : MonoBehaviour {
     public GameObject down_left_generator;
     public GameObject down_right_generator;
 
+    // Private variables
     private int citizens = 0;
     private float counterToSpawnCitizen;
 
@@ -42,7 +46,8 @@ public class GameController : MonoBehaviour {
         //TO DO: Cada (x) numero de ciudadanos asustados, aparecerá un policía para perseguir al jugador. 
 	}
 
-    void GenerateCitizen() {
+    // Private methods
+    private void GenerateCitizen() {
         Direction randomDir = (Direction)Mathf.Floor(Random.Range(0, 4));
         int randomPosGenerator = Random.Range(0, 2);
 
@@ -93,6 +98,7 @@ public class GameController : MonoBehaviour {
         citizens++;
     }
 
+    // Public methods
     public void DecreaseCitizens() {
         citizens--; 
     }

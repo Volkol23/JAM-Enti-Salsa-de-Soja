@@ -436,8 +436,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 478973499}
+  vision: {fileID: 801313468}
   velocity: 1
-  visionado: {fileID: 801313468}
+  timePlayerInsideVision: 2
 --- !u!4 &2008700887 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28,

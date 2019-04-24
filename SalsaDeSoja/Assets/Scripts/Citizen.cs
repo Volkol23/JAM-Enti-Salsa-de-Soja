@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Citizen : MonoBehaviour {
 
+    // Enums
     public enum State {
         moving,
         scared,
@@ -17,15 +18,19 @@ public class Citizen : MonoBehaviour {
         horizontal_right
     }
 
-    State citizenState;
-    Direction citizenDirection;
-    public Rigidbody2D rb;
-    public GameObject player; 
+    // Public variables
     public float velocity = 5.0f;
 
-    private GameController gameController; 
+    // Outlets
+    public Rigidbody2D rb;
+    public GameObject player;
 
-	void Start () {
+    // Private variables
+    private GameController gameController;
+    private State citizenState;
+    private Direction citizenDirection;
+
+    void Start () {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         citizenState = State.moving;
 	}
@@ -34,6 +39,7 @@ public class Citizen : MonoBehaviour {
         CheckCitizenBehaviour();	
 	}
 
+    // Private methods
     private void CheckCitizenBehaviour() {
         switch (citizenState) {
             case State.moving:
@@ -65,18 +71,19 @@ public class Citizen : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag == "Bound") {
+            Destroy(this.gameObject);
+            gameController.DecreaseCitizens();
+        }
+    }
+
+    // Public methods
     public void SetDirection(Direction newDirection) {
         citizenDirection = newDirection;
     }
 
     public void SetState(State newState) {
         citizenState = newState; 
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Bound") {
-            Destroy(this.gameObject);
-            gameController.DecreaseCitizens();
-        }
     }
 }

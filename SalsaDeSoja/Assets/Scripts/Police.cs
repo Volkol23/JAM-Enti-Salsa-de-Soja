@@ -4,38 +4,55 @@ using UnityEngine;
 
 public class Police : MonoBehaviour {
 
-    enum State {
+    // Enums
+    public enum State {
         chasing,
         arresting,
         going_away
     }
-
+    // Outlets
     public GameObject player;
+    public GameObject vision;
+
+    // Public variables
     public float velocity = 20.0f;
-    public GameObject visionado; 
+    public float timePlayerInsideVision = 2.0f; 
 
-    private State state; 
-
+    // Private variables
+    private State state;
+    private float counterArresting = 0.0f; 
+    
+    
 	void Start () {
         state = State.chasing; 
 	}
 	
 	void Update () {
         CheckBehaviourPolice();
-        visionado.transform.LookAt(player.transform);
+        vision.transform.LookAt(player.transform);
 	}
 
-    void CheckBehaviourPolice() {
+    // Private methods
+    private void CheckBehaviourPolice() {
         switch (state) {
             case State.chasing:
                 transform.position = Vector2.MoveTowards(transform.position, player.transform.position, velocity * Time.deltaTime);
                 break;
             case State.arresting:
-                //TO DO ARRESTING
+                counterArresting += Time.deltaTime;
+                if (counterArresting >= timePlayerInsideVision){
+                    //TO DO: SET PLAYER STATE GAME_OVER
+                    print("Player: GAME_OVER");
+                }
                 break;
             case State.going_away:
-                //TO DO GOING AWAY
+                //TO DO: GOING AWAY
                 break; 
         }
+    }
+    
+    // Public methods
+    public void SetState(State newState){
+        state = newState; 
     }
 }
