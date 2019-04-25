@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Citizen
+  - Bound
   layers:
   - Default
   - TransparentFX

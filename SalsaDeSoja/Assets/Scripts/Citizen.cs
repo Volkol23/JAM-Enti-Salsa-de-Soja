@@ -25,15 +25,48 @@ public class Citizen : MonoBehaviour {
     public Rigidbody2D rb;
     public GameObject player;
 
+    public Sprite[] citizenFrontSprites;
+    public Sprite[] citizenBackSprites;
+
+    public RuntimeAnimatorController[] animatorControllers; 
+
     // Private variables
     private GameController gameController;
     private State citizenState;
     private Direction citizenDirection;
+    private SpriteRenderer sr; 
 
     void Start () {
+        sr = GetComponent<SpriteRenderer>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         citizenState = State.moving;
-	}
+
+        // Se asigna un tipo de sprite y animation controller por cada ciudadano generado
+        int randCitizenType = Random.Range(0, citizenFrontSprites.Length);
+
+        switch (citizenDirection) {
+            case Direction.horizontal_left:
+                GetComponent<Animator>().runtimeAnimatorController = animatorControllers[1];
+                sr.sprite = citizenFrontSprites[1];
+                GetComponent<Animator>().SetBool("walkingLateral", true);
+                break;
+            case Direction.horizontal_right:
+                GetComponent<Animator>().runtimeAnimatorController = animatorControllers[1];
+                sr.sprite = citizenFrontSprites[1];
+                GetComponent<Animator>().SetBool("walkingLateral", true);
+                sr.flipX = true; 
+                break;
+            case Direction.vertical_up:
+                GetComponent<Animator>().runtimeAnimatorController = animatorControllers[randCitizenType];
+                sr.sprite = citizenFrontSprites[randCitizenType];
+                GetComponent<Animator>().SetBool("walkingFront", true);
+                break;
+            case Direction.vertical_down:
+                GetComponent<Animator>().runtimeAnimatorController = animatorControllers[randCitizenType];
+                sr.sprite = citizenBackSprites[randCitizenType];
+                break;
+        }
+    }
 	
 	void Update () {
         CheckCitizenBehaviour();	

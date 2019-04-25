@@ -15,7 +15,6 @@ public class GameController : MonoBehaviour {
     // Public variables
     public int maxCitizens;
     public float timeToSpawnCitizen;
-    public GameObject citizen;
 
     // Outlets
     //Generators <!> Hay que mejorar esta parte, mejor hacerlo con un array/lista.
@@ -31,9 +30,14 @@ public class GameController : MonoBehaviour {
     public GameObject down_left_generator;
     public GameObject down_right_generator;
 
+    public GameObject police;
+    public GameObject citizen;
+
     // Private variables
     private int citizens = 0;
     private float counterToSpawnCitizen;
+
+    private int scaredCitizens = 0; //Usar el método IncrementScaredCitizens para incrementar por cada ciudadano asustado desde player
 
     void Update () {
         if(citizens < maxCitizens) {
@@ -43,10 +47,58 @@ public class GameController : MonoBehaviour {
                 counterToSpawnCitizen = 0.0f; 
             }
         }
-        //TO DO: Cada (x) numero de ciudadanos asustados, aparecerá un policía para perseguir al jugador. 
+
+        // debug
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter)) {
+            IncreaseScaredCitizens();
+        }
+
+
+        if(scaredCitizens == 10) {
+            GeneratePolice();
+            scaredCitizens = 0; 
+        }
 	}
 
     // Private methods
+    private void GeneratePolice() {
+        Direction randomDir = (Direction)Mathf.Floor(Random.Range(0, 4));
+        int randomPosGenerator = Random.Range(0, 2);
+
+        switch (randomDir) {
+            case Direction.horizontal_left:
+                if (randomPosGenerator == 1) {
+                    Instantiate(police, left_up_generator.transform.position, left_up_generator.transform.rotation);
+                } else {
+                    Instantiate(police, left_down_generator.transform.position, left_down_generator.transform.rotation);
+                }
+                break;
+            case Direction.horizontal_right:
+                if (randomPosGenerator == 1) {
+                    Instantiate(police, right_up_generator.transform.position, right_up_generator.transform.rotation);
+                } else {
+                    Instantiate(police, right_down_generator.transform.position, right_down_generator.transform.rotation);
+                }
+
+                break;
+            case Direction.vertical_down:
+                if (randomPosGenerator == 1) {
+                    Instantiate(police, down_left_generator.transform.position, down_left_generator.transform.rotation);
+                } else {
+                    Instantiate(police, down_right_generator.transform.position, down_right_generator.transform.rotation);
+                }
+                break;
+            case Direction.vertical_up:
+                if (randomPosGenerator == 1) {
+                    Instantiate(police, up_left_generator.transform.position, up_left_generator.transform.rotation);
+                } else {
+                    Instantiate(police, up_right_generator.transform.position, up_right_generator.transform.rotation);
+                }
+                break;
+        }
+    }
+
     private void GenerateCitizen() {
         Direction randomDir = (Direction)Mathf.Floor(Random.Range(0, 4));
         int randomPosGenerator = Random.Range(0, 2);
@@ -101,5 +153,9 @@ public class GameController : MonoBehaviour {
     // Public methods
     public void DecreaseCitizens() {
         citizens--; 
+    }
+
+    public void IncreaseScaredCitizens() {
+        scaredCitizens++;
     }
 }
