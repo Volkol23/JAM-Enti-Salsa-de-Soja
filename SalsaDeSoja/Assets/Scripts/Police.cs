@@ -12,25 +12,27 @@ public class Police : MonoBehaviour {
     }
     // Outlets
     public GameObject vision;
+    public GameObject pointToEscape; 
 
     // Public variables
     public float velocity = 20.0f;
-    public float timePlayerInsideVision = 2.0f; 
+    public float timePlayerInsideVision = 2.0f;
 
     // Private variables
     private State state;
     private float counterArresting = 0.0f;
     private GameObject player;
 
-    void Start () {
+    void Start() {
         state = State.chasing;
         player = GameObject.FindGameObjectWithTag("Player");
-	}
-	
-	void Update () {
+        pointToEscape = GameObject.Find("Up_Left");
+    }
+
+    void Update() {
         CheckBehaviourPolice();
         vision.transform.LookAt(player.transform);
-	}
+    }
 
     // Private methods
     private void CheckBehaviourPolice() {
@@ -40,7 +42,7 @@ public class Police : MonoBehaviour {
                 break;
             case State.arresting:
                 counterArresting += Time.deltaTime;
-                if (counterArresting >= timePlayerInsideVision){
+                if (counterArresting >= timePlayerInsideVision) {
                     //TO DO: SET PLAYER STATE GAME_OVER
                     print("Player: GAME_OVER");
                 } else {
@@ -49,12 +51,13 @@ public class Police : MonoBehaviour {
                 break;
             case State.going_away:
                 //TO DO: GOING AWAY
-                break; 
+                transform.position = Vector2.MoveTowards(transform.position, pointToEscape.transform.position, velocity * Time.deltaTime);
+                break;
         }
     }
-    
+
     // Public methods
-    public void SetState(State newState){
-        state = newState; 
+    public void SetState(State newState) {
+        state = newState;
     }
 }

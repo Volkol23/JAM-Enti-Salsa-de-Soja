@@ -5,12 +5,11 @@ using UnityEngine;
 public class Police_VisionRange : MonoBehaviour {
 
     // Private variables
-    private RaycastHit2D hit;
-    private bool canArrest = false; 
+    private bool canArrest = false;
+    private GameObject player;
 
     // Outlets
-    private GameObject player;
-    public LayerMask layerMask; 
+    public LayerMask layerMask;
 
     // Private methods
     private void Start() {
@@ -18,11 +17,11 @@ public class Police_VisionRange : MonoBehaviour {
     }
 
     private void Update() {
-        Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
+        //Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, Vector2.Distance(player.transform.position, transform.position), layerMask);
 
-        if(hit.collider != null && hit.collider.tag == "Player") {
-            canArrest = true; 
+        if (hit.collider != null && hit.collider.tag == "Player") {
+            canArrest = true;
         } else {
             canArrest = false;
         }

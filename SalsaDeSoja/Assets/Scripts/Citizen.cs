@@ -10,11 +10,11 @@ public class Citizen : MonoBehaviour {
         scared,
         run_away
     }
-    
+
     public enum Direction {
-        vertical_up, 
+        vertical_up,
         vertical_down,
-        horizontal_left, 
+        horizontal_left,
         horizontal_right
     }
 
@@ -27,22 +27,24 @@ public class Citizen : MonoBehaviour {
 
     public Sprite[] citizenFrontSprites;
     public Sprite[] citizenBackSprites;
+    
 
-    public RuntimeAnimatorController[] animatorControllers; 
+    public RuntimeAnimatorController[] animatorControllers;
 
     // Private variables
     private GameController gameController;
     private State citizenState;
     private Direction citizenDirection;
-    private SpriteRenderer sr; 
+    private SpriteRenderer sr;
+    private int randCitizenType;
 
-    void Start () {
+    void Start() {
         sr = GetComponent<SpriteRenderer>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         citizenState = State.moving;
 
         // Se asigna un tipo de sprite y animation controller por cada ciudadano generado
-        int randCitizenType = Random.Range(0, citizenFrontSprites.Length);
+        randCitizenType = Random.Range(0, citizenFrontSprites.Length);
 
         switch (citizenDirection) {
             case Direction.horizontal_left:
@@ -54,7 +56,7 @@ public class Citizen : MonoBehaviour {
                 GetComponent<Animator>().runtimeAnimatorController = animatorControllers[1];
                 sr.sprite = citizenFrontSprites[1];
                 GetComponent<Animator>().SetBool("walkingLateral", true);
-                sr.flipX = true; 
+                sr.flipX = true;
                 break;
             case Direction.vertical_up:
                 GetComponent<Animator>().runtimeAnimatorController = animatorControllers[randCitizenType];
@@ -67,10 +69,10 @@ public class Citizen : MonoBehaviour {
                 break;
         }
     }
-	
-	void Update () {
-        CheckCitizenBehaviour();	
-	}
+
+    void Update() {
+        CheckCitizenBehaviour();
+    }
 
     // Private methods
     private void CheckCitizenBehaviour() {
@@ -95,11 +97,13 @@ public class Citizen : MonoBehaviour {
                 }
                 break;
             case State.scared:
-                rb.velocity = Vector2.zero; 
+                rb.velocity = Vector2.zero;
+                GetComponent<Animator>().SetBool("scared", true);
                 break;
             case State.run_away:
-                Vector2 playerPos = player.transform.position * -1; 
+                Vector2 playerPos = player.transform.position * -1;
                 rb.velocity = playerPos * velocity * Time.deltaTime;
+                GetComponent<Animator>().SetBool("scared", true);
                 break;
         }
     }
@@ -117,6 +121,6 @@ public class Citizen : MonoBehaviour {
     }
 
     public void SetState(State newState) {
-        citizenState = newState; 
+        citizenState = newState;
     }
 }

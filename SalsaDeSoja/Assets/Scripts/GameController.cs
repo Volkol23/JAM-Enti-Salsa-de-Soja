@@ -39,12 +39,12 @@ public class GameController : MonoBehaviour {
 
     private int scaredCitizens = 0; //Usar el método IncrementScaredCitizens para incrementar por cada ciudadano asustado desde player
 
-    void Update () {
-        if(citizens < maxCitizens) {
-            counterToSpawnCitizen += Time.deltaTime; 
-            if(counterToSpawnCitizen >= timeToSpawnCitizen) {
+    void Update() {
+        if (citizens < maxCitizens) {
+            counterToSpawnCitizen += Time.deltaTime;
+            if (counterToSpawnCitizen >= timeToSpawnCitizen) {
                 GenerateCitizen();
-                counterToSpawnCitizen = 0.0f; 
+                counterToSpawnCitizen = 0.0f;
             }
         }
 
@@ -55,11 +55,11 @@ public class GameController : MonoBehaviour {
         }
 
 
-        if(scaredCitizens == 10) {
+        if (scaredCitizens == 10) {
             GeneratePolice();
-            scaredCitizens = 0; 
+            scaredCitizens = 0;
         }
-	}
+    }
 
     // Private methods
     private void GeneratePolice() {
@@ -103,14 +103,13 @@ public class GameController : MonoBehaviour {
         Direction randomDir = (Direction)Mathf.Floor(Random.Range(0, 4));
         int randomPosGenerator = Random.Range(0, 2);
 
-        GameObject newCitizen; 
+        GameObject newCitizen;
 
         switch (randomDir) {
             case Direction.horizontal_left:
-                if(randomPosGenerator == 1) {
+                if (randomPosGenerator == 1) {
                     newCitizen = Instantiate(citizen, left_up_generator.transform.position, left_up_generator.transform.rotation);
-                }
-                else {
+                } else {
                     newCitizen = Instantiate(citizen, left_down_generator.transform.position, left_down_generator.transform.rotation);
                 }
                 newCitizen.GetComponent<Citizen>().SetDirection(Citizen.Direction.horizontal_left);
@@ -119,8 +118,7 @@ public class GameController : MonoBehaviour {
             case Direction.horizontal_right:
                 if (randomPosGenerator == 1) {
                     newCitizen = Instantiate(citizen, right_up_generator.transform.position, right_up_generator.transform.rotation);
-                }
-                else {
+                } else {
                     newCitizen = Instantiate(citizen, right_down_generator.transform.position, right_down_generator.transform.rotation);
                 }
                 newCitizen.GetComponent<Citizen>().SetDirection(Citizen.Direction.horizontal_right);
@@ -129,8 +127,7 @@ public class GameController : MonoBehaviour {
             case Direction.vertical_down:
                 if (randomPosGenerator == 1) {
                     newCitizen = Instantiate(citizen, down_left_generator.transform.position, down_left_generator.transform.rotation);
-                }
-                else {
+                } else {
                     newCitizen = Instantiate(citizen, down_right_generator.transform.position, down_right_generator.transform.rotation);
                 }
                 newCitizen.GetComponent<Citizen>().SetDirection(Citizen.Direction.vertical_down);
@@ -139,20 +136,19 @@ public class GameController : MonoBehaviour {
             case Direction.vertical_up:
                 if (randomPosGenerator == 1) {
                     newCitizen = Instantiate(citizen, up_left_generator.transform.position, up_left_generator.transform.rotation);
-                }
-                else {
+                } else {
                     newCitizen = Instantiate(citizen, up_right_generator.transform.position, up_right_generator.transform.rotation);
                 }
                 newCitizen.GetComponent<Citizen>().SetDirection(Citizen.Direction.vertical_up);
 
-                break; 
+                break;
         }
         citizens++;
     }
 
     // Public methods
     public void DecreaseCitizens() {
-        citizens--; 
+        citizens--;
     }
 
     public void IncreaseScaredCitizens() {

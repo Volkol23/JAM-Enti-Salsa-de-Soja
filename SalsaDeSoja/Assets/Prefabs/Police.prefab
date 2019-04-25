@@ -156,6 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cab41568468fa418547508515f113c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114868463533617958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fe97d4bab402f44a7ba14cad474fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   vision: {fileID: 1043133761894942}
+  pointToEscape: {fileID: 0}
   velocity: 1
   timePlayerInsideVision: 2
 --- !u!212 &212104952760201916
