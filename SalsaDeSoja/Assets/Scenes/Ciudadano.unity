@@ -297,6 +297,61 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!1001 &571061670
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.351394
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.09396186
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1418735947081802, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656080243156720, guid: f338847d5312366459e1d8914ec71f28,
+        type: 2}
+      propertyPath: layerMask.m_Bits
+      value: 4294967039
+      objectReference: {fileID: 0}
+    - target: {fileID: 1418735947081802, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f338847d5312366459e1d8914ec71f28, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &642546664
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +603,7 @@ MonoBehaviour:
   up_right_generator: {fileID: 1688806487}
   down_left_generator: {fileID: 1364330746}
   down_right_generator: {fileID: 1225222766}
-  police: {fileID: 0}
+  police: {fileID: 1190020485211918, guid: f338847d5312366459e1d8914ec71f28, type: 2}
   citizen: {fileID: 1390259551291782, guid: f40551f3e6e084b44bb524f721809083, type: 2}
 --- !u!4 &1268294968
 Transform:

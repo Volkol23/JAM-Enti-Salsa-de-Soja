@@ -11,7 +11,6 @@ public class Police : MonoBehaviour {
         going_away
     }
     // Outlets
-    public GameObject player;
     public GameObject vision;
 
     // Public variables
@@ -20,11 +19,12 @@ public class Police : MonoBehaviour {
 
     // Private variables
     private State state;
-    private float counterArresting = 0.0f; 
-    
-    
-	void Start () {
-        state = State.chasing; 
+    private float counterArresting = 0.0f;
+    private GameObject player;
+
+    void Start () {
+        state = State.chasing;
+        player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	void Update () {
@@ -43,6 +43,8 @@ public class Police : MonoBehaviour {
                 if (counterArresting >= timePlayerInsideVision){
                     //TO DO: SET PLAYER STATE GAME_OVER
                     print("Player: GAME_OVER");
+                } else {
+                    transform.position = Vector2.MoveTowards(transform.position, player.transform.position, velocity * Time.deltaTime);
                 }
                 break;
             case State.going_away:

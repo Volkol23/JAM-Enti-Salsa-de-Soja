@@ -203,99 +203,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.099999994
---- !u!1 &801313468
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 801313469}
-  m_Layer: 0
-  m_Name: Vision
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &801313469
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 801313468}
-  m_LocalRotation: {x: 0.00000086426735, y: -0.00000053774716, z: 0.00000009445596,
-    w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1123744148}
-  m_Father: {fileID: 2008700887}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -180, y: -900, z: 900}
---- !u!1 &1123744147
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1123744148}
-  - component: {fileID: 1123744150}
-  - component: {fileID: 1123744149}
-  m_Layer: 0
-  m_Name: VisionRange
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1123744148
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123744147}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 801313469}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 360, y: 90, z: 90}
---- !u!68 &1123744149
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123744147}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.4368201, y: 1.0541658}
-  - {x: -0.00095675373, y: 0.06381356}
-  - {x: 0.50394017, y: 1.0847726}
-  - {x: 0.25791666, y: 1.1565125}
-  - {x: 0.024421489, y: 1.1824608}
-  - {x: -0.2191616, y: 1.1438096}
-  - {x: -0.4385755, y: 1.0493913}
---- !u!114 &1123744150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123744147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10cab41568468fa418547508515f113c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1683994181
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,51 +323,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114868463533617958, guid: f338847d5312366459e1d8914ec71f28,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 478973499}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f338847d5312366459e1d8914ec71f28, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2008700884 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1190020485211918, guid: f338847d5312366459e1d8914ec71f28,
-    type: 2}
-  m_PrefabInternal: {fileID: 2008700883}
---- !u!114 &2008700885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2008700884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95fe97d4bab402f44a7ba14cad474fd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 478973499}
-  vision: {fileID: 801313468}
-  velocity: 1
-  timePlayerInsideVision: 2
---- !u!4 &2008700887 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4332729061681048, guid: f338847d5312366459e1d8914ec71f28,
-    type: 2}
-  m_PrefabInternal: {fileID: 2008700883}
---- !u!50 &2008700888
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2008700884}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
