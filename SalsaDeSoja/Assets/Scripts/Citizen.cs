@@ -36,7 +36,6 @@ public class Citizen : MonoBehaviour {
     private Direction citizenDirection;
     private SpriteRenderer sr;
     private int randCitizenType;
-    private int numIncreasePoints = 0;
 
     void Start() {
         sr = GetComponent<SpriteRenderer>();
@@ -93,7 +92,7 @@ public class Citizen : MonoBehaviour {
                         rb.velocity = Vector2.up * velocity * Time.deltaTime;
                         break;
                     default:
-                        print("ERROR: No se ha asignado ninguna dirección para el ciudadano.");
+                        //print("ERROR: No se ha asignado ninguna dirección para el ciudadano.");
                         break;
                 }
                 break;
@@ -104,7 +103,7 @@ public class Citizen : MonoBehaviour {
             case State.run_away:
                 
                 
-                print("DEBUG: Ciudadano asustado!");
+                //print("DEBUG: Ciudadano asustado!");
                 Vector2 playerPos = player.transform.position * -1;
                 rb.velocity = playerPos * velocity * Time.deltaTime;
                 GetComponent<Animator>().SetBool("scared", true);

@@ -12,13 +12,14 @@ public class Police : MonoBehaviour {
     }
     // Outlets
     public GameObject vision;
-    public GameObject pointToEscape; 
+    
 
     // Public variables
     public float velocity = 20.0f;
     public float timePlayerInsideVision = 2.0f;
 
     // Private variables
+    private GameObject pointToEscape;
     private State state;
     private float counterArresting = 0.0f;
     private GameObject player;
@@ -43,14 +44,12 @@ public class Police : MonoBehaviour {
             case State.arresting:
                 counterArresting += Time.deltaTime;
                 if (counterArresting >= timePlayerInsideVision) {
-                    //TO DO: SET PLAYER STATE GAME_OVER
-                    print("Player: GAME_OVER");
+                    player.GetComponent<PlayerBehaviour>().SetState(PlayerBehaviour.State.game_over);
                 } else {
                     transform.position = Vector2.MoveTowards(transform.position, player.transform.position, velocity * Time.deltaTime);
                 }
                 break;
             case State.going_away:
-                //TO DO: GOING AWAY
                 transform.position = Vector2.MoveTowards(transform.position, pointToEscape.transform.position, velocity * Time.deltaTime);
                 break;
         }

@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour {
         }
 
 
-        if (scaredCitizens == 10) {
+        if (scaredCitizens == 2) {
             GeneratePolice();
             scaredCitizens = 0;
         }
