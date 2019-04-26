@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour {
 
-    enum State
-    {
+    enum State {
         moving,
         scare,
         game_over
@@ -26,7 +25,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private Vector3 direction;
 
 
-    void Start () {
+    void Start() {
         playerState = State.moving;
         rb = GetComponent<Rigidbody2D>();
         citizen = GetComponent<Rigidbody2D>();
@@ -35,31 +34,33 @@ public class PlayerBehaviour : MonoBehaviour {
         direction = Vector2.up;
     }
 
-    void Update () {
+    private GameObject ciudadanoElegido; 
+
+    void Update() {
+        print("SCORE: " + score);
         Behaviour();
 
         Ray2D playerRay = new Ray2D(transform.position, direction);
         RaycastHit2D hit = Physics2D.Raycast(playerRay.origin, playerRay.direction, 2000f);
         Debug.DrawRay(playerRay.origin, playerRay.direction, Color.green, 2000f);
 
-        if (hit.collider != null && hit.collider.tag.Equals("Citizen"))
-        {
+        if (hit.collider != null && hit.collider.tag.Equals("Citizen")) {
             print("ha chocado");
-                print("Raycast ha colisionado con un ciudadano");
-                if (hit.distance < 2)
-                {
-                    print("Esta a rango");
-                    if (Input.GetButton("Scare"))
-
-                        playerState = State.scare;
+            print("Raycast ha colisionado con un ciudadano");
+            if (hit.distance < 2) {
+                print("Esta a rango");
+                if (Input.GetButton("Scare")) {
+                    playerState = State.scare;
+                    print("DEBUG: Está asustando");
+                    hit.collider.GetComponent<Citizen>().SetState(Citizen.State.scared);
+                    ciudadanoElegido = hit.collider.gameObject;
                 }
+            }
         }
     }
 
-    private void Behaviour()
-    {
-        switch (playerState)
-        {
+    private void Behaviour() {
+        switch (playerState) {
             case State.moving:
                 Moving();
                 break;
@@ -73,29 +74,24 @@ public class PlayerBehaviour : MonoBehaviour {
         }
     }
 
-    private void Moving()
-    {
+    private void Moving() {
         float moveHorizontal = Input.GetAxis("Horizontal");
 
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector2(moveHorizontal, moveVertical);
 
-        if (movement.x < 0f)
-        {
+        if (movement.x < 0f) {
             direction = Vector2.left;
         }
-        else if (movement.x > 0f)
-        {
+        else if (movement.x > 0f) {
             direction = Vector2.right;
         }
 
-        if (movement.y < 0f)
-        {
+        if (movement.y < 0f) {
             direction = Vector2.down;
         }
-        else if (movement.y > 0f)
-        {
+        else if (movement.y > 0f) {
             direction = Vector2.up;
         }
         //if (GameObject.FindGameObjectWithTag("Police"))
@@ -108,36 +104,33 @@ public class PlayerBehaviour : MonoBehaviour {
             rb.transform.position = rb.transform.position;
     }
 
-    public int GetCitizensScared()
-    {
+    public int GetCitizensScared() {
         return citizenScared;
     }
 
-    IEnumerator ExecuteAfterTime(float time)
-    {
+    IEnumerator ExecuteAfterTime(float time) {
         yield return new WaitForSeconds(time);
 
         AddPoints();
         isScaring = false;
         playerState = State.moving;
+        //TO DO: Aqui es cuando termina de asustar
+        ciudadanoElegido.GetComponent<Citizen>().SetState(Citizen.State.run_away);
+
     }
 
-    private void Scare()
-    {
+    private void Scare() {
+        //TO DO: Aqui es cuando está asustando
         StartCoroutine(ExecuteAfterTime(scareTime));
     }
 
-    private void AddPoints()
-    {
+    private void AddPoints() {
         citizenScared++;
         score += citizenScore;
         Debug.Log(citizenScore);
     }
 
-    private void GameOver()
-    {
+    private void GameOver() {
         Time.timeScale = 0.0f;
-        
-
     }
 }

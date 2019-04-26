@@ -23,25 +23,26 @@ public class Citizen : MonoBehaviour {
 
     // Outlets
     public Rigidbody2D rb;
-    public GameObject player;
-
     public Sprite[] citizenFrontSprites;
     public Sprite[] citizenBackSprites;
-    
+    public int score = 50; 
 
     public RuntimeAnimatorController[] animatorControllers;
 
     // Private variables
     private GameController gameController;
+    private GameObject player;
     private State citizenState;
     private Direction citizenDirection;
     private SpriteRenderer sr;
     private int randCitizenType;
+    private int numIncreasePoints = 0;
 
     void Start() {
         sr = GetComponent<SpriteRenderer>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         citizenState = State.moving;
+        player = GameObject.FindGameObjectWithTag("Player");
 
         // Se asigna un tipo de sprite y animation controller por cada ciudadano generado
         randCitizenType = Random.Range(0, citizenFrontSprites.Length);
@@ -101,6 +102,9 @@ public class Citizen : MonoBehaviour {
                 GetComponent<Animator>().SetBool("scared", true);
                 break;
             case State.run_away:
+                
+                
+                print("DEBUG: Ciudadano asustado!");
                 Vector2 playerPos = player.transform.position * -1;
                 rb.velocity = playerPos * velocity * Time.deltaTime;
                 GetComponent<Animator>().SetBool("scared", true);

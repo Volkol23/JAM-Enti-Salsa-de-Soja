@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4419233575664828}
   - component: {fileID: 114656080243156720}
   - component: {fileID: 68300320421203338}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VisionRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967039
 --- !u!114 &114868463533617958
 MonoBehaviour:
   m_ObjectHideFlags: 1
