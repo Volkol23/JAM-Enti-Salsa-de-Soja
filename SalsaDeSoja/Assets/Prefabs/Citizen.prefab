@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 114940251136945546}
   - component: {fileID: 212679543911735480}
   - component: {fileID: 50008926186848216}
-  - component: {fileID: 58136839319899890}
   - component: {fileID: 95678728364652004}
+  - component: {fileID: 58878961914558522}
   m_Layer: 0
   m_Name: Citizen
   m_TagString: Citizen
@@ -64,7 +64,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58136839319899890
+--- !u!58 &58878961914558522
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.15
 --- !u!95 &95678728364652004
 Animator:
   serializedVersion: 3
@@ -110,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 40
   rb: {fileID: 50008926186848216}
-  player: {fileID: 0}
   citizenFrontSprites:
   - {fileID: 21300000, guid: 9a4c07f5acae73949bd6e403e89221de, type: 3}
   - {fileID: 21300000, guid: caae2a92a1e08e447bff0830be1e9438, type: 3}
@@ -119,6 +118,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1274aee64ccb5694c94f2da5fd9c1c07, type: 3}
   - {fileID: 21300000, guid: 792797505a273644395fc51d054448ec, type: 3}
   - {fileID: 21300000, guid: 45b1e733cdafdd54a9c05fb64d0f74e1, type: 3}
+  score: 50
   animatorControllers:
   - {fileID: 9100000, guid: c21d0fb42a3317f4d8799058c8b73e71, type: 2}
   - {fileID: 9100000, guid: ad390b4ed1a942b42adfa7ba16e4d43e, type: 2}

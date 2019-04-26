@@ -57,6 +57,9 @@ public class PlayerBehaviour : MonoBehaviour {
                 }
             }
         }
+        else {
+            print("No está chocando con nada");
+        }
     }
 
     private void Behaviour() {
