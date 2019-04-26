@@ -5,14 +5,24 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIInteractions : MonoBehaviour {
-	
+
+    public GameObject buttons;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("space"))
+            buttons.SetActive(true);
+    }
+
     public void LoadLevel()
     {
-        SceneManager.LoadScene("Player");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Quit()
     {
         Application.Quit();
     }
+
+
 }

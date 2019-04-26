@@ -29,6 +29,8 @@ public class Citizen : MonoBehaviour {
 
     public RuntimeAnimatorController[] animatorControllers;
 
+    public AudioClip grito; 
+
     // Private variables
     private GameController gameController;
     private GameObject player;
@@ -36,8 +38,11 @@ public class Citizen : MonoBehaviour {
     private Direction citizenDirection;
     private SpriteRenderer sr;
     private int randCitizenType;
+    private AudioSource audioSource;
+
 
     void Start() {
+        audioSource = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         citizenState = State.moving;
@@ -101,9 +106,8 @@ public class Citizen : MonoBehaviour {
                 GetComponent<Animator>().SetBool("scared", true);
                 break;
             case State.run_away:
-                
-                
                 //print("DEBUG: Ciudadano asustado!");
+                audioSource.PlayOneShot(grito, 0.2F);
                 Vector2 playerPos = player.transform.position * -1;
                 rb.velocity = playerPos * velocity * Time.deltaTime;
                 GetComponent<Animator>().SetBool("scared", true);
