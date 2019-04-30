@@ -17,9 +17,12 @@ public class Police_VisionRange : MonoBehaviour {
     }
 
     private void Update() {
-        //Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, Vector2.Distance(player.transform.position, transform.position), layerMask);
+        Vector3 direction = (player.transform.position - transform.position).normalized;
 
+        Debug.DrawRay(transform.position, direction, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1000f, layerMask);
+
+        Debug.Log(hit.collider, hit.collider);
         if (hit.collider != null && hit.collider.tag == "Player") {
             canArrest = true;
         } else {
